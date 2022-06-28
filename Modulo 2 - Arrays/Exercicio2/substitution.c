@@ -50,7 +50,6 @@ int valida_chave(string chave)
             {
                 printf("A chave precisa conter apenas caracteres alfabéticos.\n");
                 return 1;
-                break;
             }
 
             count = 1;
@@ -65,7 +64,6 @@ int valida_chave(string chave)
                 {
                     printf("A chave não pode conter caracteres duplicados.\n");
                     return 1;
-                    break;
                 }
             }
         }

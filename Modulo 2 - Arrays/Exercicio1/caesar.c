@@ -5,10 +5,11 @@
 #include <ctype.h>
 
 int criptografia(string p, int k);
-int chave;
-bool int_positivo = false;
+
 int main(int argc, string argv[])
 {
+    bool int_positivo = false;
+
     if (argc == 1)
     {
         printf("Passe um parâmetro.\n");
@@ -27,13 +28,13 @@ int main(int argc, string argv[])
             if (argv[1][0] == '0')
             {
                 printf("Use: ./caesar key\n");
-                break;
+                return 1;
             }
             if (!isdigit(argv[1][i]))
             {
                 printf("Use: ./caesar key\n");
                 int_positivo = false;
-                break;
+                return 1;
             }
             else
             {
@@ -42,7 +43,6 @@ int main(int argc, string argv[])
         }
         if (int_positivo)
         {
-            chave = atoi(argv[1]);
             string p = get_string("plaintext: ");
             criptografia(p, atoi(argv[1]));
         }
