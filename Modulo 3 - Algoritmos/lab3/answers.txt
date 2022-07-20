@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: em dados ordenados teve um desempenho melhor do que selection
+
+sort2 uses: merge sort
+
+How do you know?: teve o melhor desempenho para números invertidos
+
+sort3 uses: selection sort
+
+How do you know?: teve aproximadamente o mesmo tempo para números ordenados, invertidos e aleatórios
