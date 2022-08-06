@@ -52,11 +52,61 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    for (int i = 0; i < height; i++)
+    {
+        RGBTRIPLE temp;
+        for (int j = 0; j < (width / 2); j++)
+        {
+            temp = image[i][j];
+            image[i][j] = image[i][width - j - 1];
+            image[i][width - j - 1] = temp;
+        }
+    }
     return;
 }
 
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    // temp
+    RGBTRIPLE temp[height][width];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            temp[i][j] = image[i][j];
+        }
+    }
+
+    // percorre cada pixel
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            float red = 0;
+            float green = 0;
+            float blue = 0;
+            int pixels = 0;
+
+            // percorre os pixels ao redor do atual numa caixa 3x3
+            for (int k = i - 1; k <= i + 1; k++)
+            {
+                for (int l = j - 1; l <= (j + 1); l++)
+                {
+                    if (k >= 0 && l >= 0 && k < height && l < width)
+                    {
+                        red += temp[k][l].rgbtRed;
+                        green += temp[k][l].rgbtGreen;
+                        blue += temp[k][l].rgbtBlue;
+                        pixels++;
+
+                        image[i][j].rgbtRed = (int)round(red / pixels);
+                        image[i][j].rgbtGreen = (int)round(green / pixels);
+                        image[i][j].rgbtBlue = (int)round(blue / pixels);
+                    }
+                }
+            }
+        }
+    }
     return;
 }
