@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+
+            /* Parte 1 */
+            let answer = document.getElementsByClassName('answer-1'),
+                status = document.getElementById('status-1');
+            for(let i = 0; i < answer.length; i++){
+                answer[i].onclick = function(){
+                    if(answer[i].innerText == 6) {
+                        this.style.backgroundColor = 'green';
+                        status.innerText = 'Correct!';
+                    } else {
+                        this.style.backgroundColor = 'red';
+                        status.innerText = 'Incorrect!';
+                    }
+                };
+            }
+
+            /* Parte 2 */
+            document.getElementById('btn-question2').onclick = function(){
+                let answer = document.getElementById('answer-2'),
+                    status = document.getElementById('status-2');
+                if(answer.value == 5) {
+                    answer.style.color = 'green';
+                    status.innerText = 'Correct!';
+                } else {
+                    answer.style.color = 'red';
+                    status.innerText = 'Incorrect!';
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Trivia!</h1>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h2>Part 1: Multiple Choice </h2>
+            <hr>
+            <h3>How many members does the band Iron Maiden have?</h3>
+            <p id="status-1"></p>
+            <button class="answer-1" type="button">4</button>
+            <button class="answer-1" type="button">5</button>
+            <button class="answer-1" type="button">6</button>
+            <button class="answer-1" type="button">7</button>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Free Response</h2>
+            <hr>
+            <h3>How many members does the band Dream Theater have?</h3>
+            <p id="status-2"></p>
+            <input type="number" id="answer-2" min="2" max="10" required placeholder="Number between 2 and 10">
+            <button id="btn-question2">Send</button>
+        </div>
+    </div>
+</body>
+</html>
