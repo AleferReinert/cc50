@@ -1,0 +1,255 @@
+/* Reset */
+button:focus {
+    box-shadow: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Variables */
+:root {
+    --color-primary: #4179f3;
+    --text-color: #333;
+}
+
+/* General */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,700;0,900;1,300&display=swap');
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.page-content {
+    min-height: 100%;
+    padding: 61px 0 37px;
+    text-align: center;
+}
+
+.page-content h1 {
+    font-weight: 900;
+    margin: 35px 0 20px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+    opacity: 0.85;
+    letter-spacing: 1px;
+}
+
+.page-content p {
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #000;
+}
+
+/* Header */
+header {
+    border-bottom: 1px solid rgba(255,255,255,0.075);
+    padding: 15px 0;
+    background-color: var(--color-primary);
+    letter-spacing: 1px;
+}
+
+header .row {
+    align-items: center;
+}
+
+#logo {
+    margin-bottom: -1px;
+}
+
+#logo a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+#menu-desktop {
+    display: flex;
+    justify-content: right;
+}
+
+#menu-desktop a {
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+}
+
+#menu-desktop a + a{
+    margin-left: 24px;
+}
+
+#menu-desktop a span {
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,1);
+    left: -14px;
+    position: absolute;
+    border-radius: 100%;
+    top: 50%;
+    margin-top: -2px;
+}
+
+#menu-desktop a::after,
+#menu-desktop a::before {
+    content:' ';
+    display: block;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    height: 1px;
+    background: rgba(255,255,255,0.75);
+    transition: all .15s linear;
+}
+
+#menu-desktop a::after {
+    bottom: -3px;
+}
+#menu-desktop a::before {
+    top: -3px;
+}
+
+#menu-desktop a:hover::after,
+#menu-desktop a:hover::before {
+    left: 0;
+    right: 0;
+}
+
+#menu-mobile {
+    float: right;
+}
+
+#menu-mobile a {
+    font-weight: 400;
+}
+
+#menu-mobile svg {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+}
+
+#menu-mobile path {
+    color: #fff;
+}
+
+#menu-mobile button {
+    background: transparent;
+    padding: 0;
+    border: 0;
+}
+
+#menu-mobile button::after {
+    display: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    bottom: 0;
+    font-size: 14px;
+    padding: 10px 0;
+    color: var(--text-color);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Home */
+#homepage {
+    height: 100%;
+    background-color: var(--color-primary);
+}
+
+#homepage main {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#homepage h1 {
+    text-align: center;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 3rem;
+}
+
+#homepage footer {
+    color: #fff;
+}
+
+/* Contact */
+#contact .social {
+    width: fit-content;
+    margin: 30px auto 0;
+}
+
+#contact .social a {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+}
+
+#contact .social svg {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+#contact .social [title="Github"] .bg-color {fill: #2A3F4B}
+#contact .social [title="Linkedin"] .bg-color {fill: #0072b1}
+#contact .social [title="E-mail"] .bg-color {fill: var(--text-color)}
+#contact .social [title="Whatsapp"] .bg-color {fill: #25D366}
+
+/* Labs */
+#labs h2 {
+    color: var(--text-color);
+    font-size: 1rem;
+    margin: 0;
+}
+
+#labs li {
+    text-align: left;
+}
+
+#labs li + li {
+    margin-top: 10px;
+}
+
+#labs table {
+    width: 100%;
+}
+
+#labs table th {
+    color: var(--text-color);
+    text-align: left;
+    font-weight: 400;
+}
+
+#labs table td {
+    text-align: right;
+}
+
+#labs table th,
+#labs table td {
+    padding: 8px 10px;
+}
+
+#labs table tr:nth-child(even) th, 
+#labs table tr:nth-child(even) td {
+    background: rgba(0,0,0,0.035);
+}
