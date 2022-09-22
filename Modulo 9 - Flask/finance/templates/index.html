@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block main %}
+    <table class="table table-striped" id="table-purchases">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase['symbol'] }}</td>
+                <td>{{ purchase['name'] }}</td>
+                <td>{{ purchase['shares'] }}</td>
+                <td>{{ purchase['price'] }}</td>
+                <td>{{ purchase['total'] }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4"></td>
+                <td><b>{{ total }}</b></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

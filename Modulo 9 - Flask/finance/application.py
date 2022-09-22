@@ -45,16 +45,50 @@ if not os.environ.get("API_KEY"):
 @app.route("/")
 @login_required
 def index():
-    """Show portfolio of stocks"""
-    return apology("TODO")
+    purchases = []
+    total = 0
+    rows = db.execute("SELECT * FROM purchases WHERE user_id=?", session["user_id"])
+    for row in rows:
+        total += (row['shares'] * row['price'])
+        data = lookup(row['symbol'])
+        row['name'] = data['name']
+        row['total'] = usd(row['shares'] * row['price'])
+        row['price'] = usd(row['price'])
+        purchases.append(row)
+    return render_template("index.html", purchases=purchases, total=usd(total))
 
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
-    """Buy shares of stock"""
-    return apology("TODO")
+    if request.method == "GET":
+        return render_template("buy.html")
 
+    if request.method == "POST":
+        # Obriga a inserir um symbol valido
+        symbol = request.form.get("symbol")
+        data = lookup(symbol)
+        if not symbol:
+            return apology("Missing symbol")
+        if data == None:
+            return apology("Symbol not found")
+
+        # Obriga a inserir um número válido em shares
+        shares = request.form.get("shares")
+        if not shares:
+            return apology("Missing shares")
+        if shares <= '0':
+            return apology("Shares request a positive number")
+
+        data = lookup(symbol)
+        current_cash = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+
+        if current_cash[0]['cash'] < data["price"]:
+            return apology("Insufficient funds")
+
+        db.execute("CREATE TABLE IF NOT EXISTS purchases (id INTEGER, user_id INTEGER NOT NULL, symbol TEXT NOT NULL, price NUMERIC NOT NULL, shares INTEGER NOT NULL, PRIMARY KEY(id), FOREIGN KEY(user_id) REFERENCES users(id))")
+        db.execute("INSERT INTO purchases (user_id, symbol, price, shares) VALUES(?, ?, ?, ?)", session["user_id"], data["symbol"], data["price"], shares)
+        return redirect("/")
 
 @app.route("/history")
 @login_required
@@ -113,8 +147,11 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
-    """Get stock quote."""
-    return apology("TODO")
+    if request.method == "GET":
+        return render_template("quote.html")
+    if request.method == "POST":
+        data = lookup(request.form.get("symbol"))
+        return render_template("quoted.html", symbol=data["symbol"], company=data["name"], price=usd(data["price"]))
 
 
 @app.route("/register", methods=["GET", "POST"])
