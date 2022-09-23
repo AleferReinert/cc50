@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    {% if transactions %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction['symbol'] }}</td>
+                <td>{{ transaction['shares'] }}</td>
+                <td>{{ transaction['price'] }}</td>
+                <td>{{ transaction['timestamp'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-primary" role="alert">
+        When you buy and sell your shares, they will appear here.
+    </div>
+    {% endif %}
+{% endblock %}

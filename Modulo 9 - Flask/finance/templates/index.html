@@ -1,4 +1,9 @@
 {% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
 {% block main %}
     <table class="table table-striped" id="table-purchases">
         <thead>
@@ -20,7 +25,12 @@
                 <td>{{ purchase['total'] }}</td>
             </tr>
             {% endfor %}
-            <tr>
+            <tr class="bg-transparent">
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr class="bg-transparent">
                 <td colspan="4"></td>
                 <td><b>{{ total }}</b></td>
             </tr>

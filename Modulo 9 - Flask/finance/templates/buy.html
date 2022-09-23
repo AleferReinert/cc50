@@ -1,12 +1,19 @@
 {% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
 {% block main %}
     <form action="/buy" method="post">
         <div class="form-group">
             <input type="text" name="symbol" placeholder="Symbol" class="form-control" autocomplete="off" autofocus>
         </div>
         <div class="form-group">
-            <input type="number" name="shares" min="1" class="form-control" placeholder="Shares">
+            <input type="text" name="shares" class="form-control" placeholder="Shares">
         </div>
+        <input type="hidden" id="timestamp" name="timestamp">
         <button type="submit" class="btn btn-primary">Buy</button>
     </form>
+    <script src="/static/scripts.js"></script>
 {% endblock%}
