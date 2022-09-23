@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <title>Birthdays</title>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1>Birthdays</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+
+                <h2>Add a Birthday</h2>
+                <form method="post" action="/">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="number" name="month" placeholder="Month" required min="1" max="12">
+                    <input type="number" name="day" placeholder="Day" required min="1" max="31">
+                    <button type="submit">Add Birthday</button>
+                </form>
+            </div>
+            {% if get_flashed_messages() %}
+            <div class="section">
+                <div class="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </div>
+            {% endif %}
+            <div class="section">
+
+                <h2>All Birthdays</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for birthday in birthdays %}
+                        <tr>
+                            <td>{{ birthday['name'] }}</td>
+                            <td>
+                                {% set month = '0' + birthday['month']|string if birthday['month']|int < 10 else birthday['month'] %}
+                                {% set day = '0' + birthday['day']|string if birthday['day']|int < 10 else birthday['day'] %}
+                                {{ month }}/{{ day }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
